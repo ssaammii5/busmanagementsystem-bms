@@ -14,9 +14,11 @@ b_seat_no
 ```sql
 CREATE TABLE bus (
     bus_id INT AUTO_INCREMENT PRIMARY KEY,
-    b_license_no VARCHAR(50) UNIQUE,
-    b_type VARCHAR(50),
-    b_seat_no INT(100)    
+    model_number VARCHAR(50),
+    licence_no VARCHAR(50) UNIQUE,
+    mileage VARCHAR(20),
+    bus_type VARCHAR(50),
+    total_seat INT(100)   
 ) AUTO_INCREMENT = 1000;
 
 ```
@@ -35,10 +37,12 @@ INSERT INTO user (username, password) VALUES ('admin', 'admin');
 ```sql
 CREATE TABLE driver (
     driver_id INT AUTO_INCREMENT PRIMARY KEY,
-    d_name VARCHAR(50),
-  	d_address VARCHAR(50),
-    d_license_no VARCHAR(50) UNIQUE,
-    d_join_date DATE    
+    driver_name VARCHAR(50),
+  	address VARCHAR(50),
+    contact VARCHAR(50),
+    nid VARCHAR(50) UNIQUE,
+    licence VARCHAR(50) UNIQUE,
+    join_date DATE    
 ) AUTO_INCREMENT = 1000;
 
 ```

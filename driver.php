@@ -2,18 +2,20 @@
 include "connection.php";
 
 if (isset($_POST["submit"])) {
-  $model_number = $_POST['model_number'];
-  $licence_number = $_POST['licence_number'];
-  $mileage = $_POST['mileage'];
-  $bus_type = $_POST['bus_type'];
-  $total_seat = $_POST['total_seat'];
+  $driver_name = $_POST['driver_name'];
+  $address = $_POST['address'];
+  $contact = $_POST['contact'];
+  $nid = $_POST['nid'];
+  $licence = $_POST['licence'];
+  $join_date = $_POST['join_date'];
 
-  $sql = "INSERT INTO `bus`(`model_number`, `licence_number`, `mileage`, `bus_type`, `total_seat`) VALUES ('$model_number','$licence_number','$mileage', '$bus_type', '$total_seat')";
+  $sql = "INSERT INTO `driver`(`driver_name`, `address`, `contact`, `nid`, `licence`,`join_date`) VALUES ('$driver_name','$address','$contact', '$nid', '$licence','$join_date')";
 
   $result = mysqli_query($conn, $sql);
 }
 
 ?>
+
 
 <html lang="en">
 
@@ -48,13 +50,13 @@ if (isset($_POST["submit"])) {
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="active">
+          <li class="">
             <a class="nav-link" href="./bus.php">
               <i class="fa fa-bus" aria-hidden="true"></i>
               <p>Bus</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="./driver.php">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <p>Driver</p>
@@ -101,8 +103,8 @@ if (isset($_POST["submit"])) {
         <div class="container-fluid">
 
           <div class="d-flex justify-content-around">
-            <a href="bus.php" class="btn btn-primary">Add New Bus</a>
-            <a href="show-bus.php" class="btn btn-success">View Bus</a>
+            <a class="btn btn-primary" href="./driver.php" role="button">Add New Driver</a>
+            <a class="btn btn-success" href="./show-driver.php" role="button">View Driver</a>
           </div>
 
           <br>
@@ -110,44 +112,30 @@ if (isset($_POST["submit"])) {
 
           <form action="" method="post">
             <div class="form-group">
-              <label class="form-label">Model Number</label>
-              <input type="text" class="form-control" name="model_number" placeholder="Enter Bus Model Number">
+              <label for="exampleFormControlInput1">Driver Name</label>
+              <input type="text" class="form-control" name="driver_name" placeholder="Enter driver name">
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Licence Number</label>
-              <input type="text" class="form-control" name="licence_number" placeholder="Enter Bus Licence Number">
+              <label for="exampleFormControlInput1">Address</label>
+              <input type="text" class="form-control" name="address" placeholder="Enter driver address">
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Mileage</label>
-              <input type="text" class="form-control" name="mileage" placeholder="Enter total distance travelled">
+              <label for="exampleFormControlInput1">Contact Number</label>
+              <input type="text" class="form-control" name="contact" placeholder="Enter driver contact number">
             </div>
-
             <div class="form-group">
-              <label>Bus Type:</label>
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              <input type="radio" class="form-check-input" name="bus_type" id="ac" value="ac">
-              <label for="male" class="form-input-label">AC</label>
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              <input type="radio" class="form-check-input" name="bus_type" id="non-ac" value="non-ac">
-              <label for="female" class="form-input-label">NON-AC</label>
+              <label for="exampleFormControlInput1">National Identity Card (NID) Number</label>
+              <input type="text" class="form-control" name="nid" placeholder="Enter driver NID">
             </div>
-
-
             <div class="form-group">
-              <label for="total_seat">Total Seat</label>
-              <input type="text" class="form-control" name="total_seat" placeholder="Enter total number of seat">
+              <label for="exampleFormControlInput1">License Number</label>
+              <input type="text" class="form-control" name="licence" placeholder="Enter Driver License Number">
             </div>
-            <div>
-              <button type="submit" class="btn btn-success" name="submit">Save</button>
-              <a href="index.php" class="btn btn-danger">Cancel</a>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Joining Date</label>
+              <input type="date" class="form-control" name="join_date" placeholder="Enter date">
             </div>
+            <input class="btn btn-primary" type="submit" name="submit">
           </form>
         </div>
       </div>

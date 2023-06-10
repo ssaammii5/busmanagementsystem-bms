@@ -1,18 +1,5 @@
 <?php
 include "connection.php";
-
-if (isset($_POST["submit"])) {
-  $model_number = $_POST['model_number'];
-  $licence_number = $_POST['licence_number'];
-  $mileage = $_POST['mileage'];
-  $bus_type = $_POST['bus_type'];
-  $total_seat = $_POST['total_seat'];
-
-  $sql = "INSERT INTO `bus`(`model_number`, `licence_number`, `mileage`, `bus_type`, `total_seat`) VALUES ('$model_number','$licence_number','$mileage', '$bus_type', '$total_seat')";
-
-  $result = mysqli_query($conn, $sql);
-}
-
 ?>
 
 <html lang="en">
@@ -108,47 +95,56 @@ if (isset($_POST["submit"])) {
           <br>
 
 
-          <form action="" method="post">
-            <div class="form-group">
-              <label class="form-label">Model Number</label>
-              <input type="text" class="form-control" name="model_number" placeholder="Enter Bus Model Number">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Licence Number</label>
-              <input type="text" class="form-control" name="licence_number" placeholder="Enter Bus Licence Number">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Mileage</label>
-              <input type="text" class="form-control" name="mileage" placeholder="Enter total distance travelled">
-            </div>
+          <table class="table table-hover text-center">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Bus ID</th>
+                <th scope="col">Model Number</th>
+                <th scope="col">Licence Number</th>
+                <th scope="col">Mileage</th>
+                <th scope="col">Bus Type</th>
+                <th scope="col">Total Seat</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $sql = "SELECT * FROM `bus`";
+              $result = mysqli_query($conn, $sql);
+              while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <tr>
+                  <td>
+                    <?php echo $row["bus_id"] ?>
+                  </td>
+                  <td>
+                    <?php echo $row["model_number"] ?>
+                  </td>
+                  <td>
+                    <?php echo $row["licence_number"] ?>
+                  </td>
+                  <td>
+                    <?php echo $row["mileage"] ?>
+                  </td>
+                  <td>
+                    <?php echo $row["bus_type"] ?>
+                  </td>
+                  <td>
+                    <?php echo $row["total_seat"] ?>
+                  </td>
+                  <td>
+                    <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i
+                        class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                    <a href="delete.php?id=<?php echo $row["id"] ?>" class="link-dark"><i
+                        class="fa-solid fa-trash fs-5"></i></a>
+                  </td>
+                </tr>
+                <?php
+              }
+              ?>
+            </tbody>
+          </table>
 
-            <div class="form-group">
-              <label>Bus Type:</label>
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              <input type="radio" class="form-check-input" name="bus_type" id="ac" value="ac">
-              <label for="male" class="form-input-label">AC</label>
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              <input type="radio" class="form-check-input" name="bus_type" id="non-ac" value="non-ac">
-              <label for="female" class="form-input-label">NON-AC</label>
-            </div>
-
-
-            <div class="form-group">
-              <label for="total_seat">Total Seat</label>
-              <input type="text" class="form-control" name="total_seat" placeholder="Enter total number of seat">
-            </div>
-            <div>
-              <button type="submit" class="btn btn-success" name="submit">Save</button>
-              <a href="index.php" class="btn btn-danger">Cancel</a>
-            </div>
-          </form>
         </div>
       </div>
 
