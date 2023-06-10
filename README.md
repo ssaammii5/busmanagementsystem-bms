@@ -24,12 +24,14 @@ CREATE TABLE bus (
 ```sql
 CREATE TABLE user (
     username VARCHAR(50) PRIMARY KEY UNIQUE,
-    password VARCHAR(50),
+    password VARCHAR(50)
 );
 
 ```
 
 INSERT INTO user (username, password) VALUES ('admin', 'admin');
+
+-- Create the driver table
 ```sql
 CREATE TABLE driver (
     driver_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -41,18 +43,9 @@ CREATE TABLE driver (
 
 ```
 
--- Create the driver table
 
-```sql
-CREATE TABLE driver (
-    driver_id INT AUTO_INCREMENT PRIMARY KEY,
-    d_name VARCHAR(50),
-    d_address VARCHAR(50),
-    d_license_no VARCHAR(50) UNIQUE,
-    d_join_date DATE
-) AUTO_INCREMENT = 1000;
 
-```
 
 INSERT INTO driver (d_name, d_address, d_license_no, d_join_date)
 VALUES ('John Doe', '123 Main St', 'ABC123', '2023-06-10');
+
