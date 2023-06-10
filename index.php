@@ -28,41 +28,41 @@
         </div>
       </div>
       <div class="sidebar">
-        <a href="#">
+        <a href="./index.php" class="active">
           <span class="material-symbols-sharp">
             dashboard
           </span>
           <h3>Dashboard</h3>
         </a>
-        <a href="#" class="active">
+        <a href="./bus.php">
           <span class="material-symbols-sharp">
-            assignment_ind
+            directions_bus
+          </span>
+          <h3>Bus</h3>
+        </a>
+        <a href="#">
+          <span class="material-symbols-sharp">
+            account_circle
           </span>
           <h3>Driver</h3>
         </a>
         <a href="#">
           <span class="material-symbols-sharp">
-            dashboard
+            departure_board
           </span>
-          <h3>Dashboard</h3>
+          <h3>Bus Schedule</h3>
         </a>
         <a href="#">
           <span class="material-symbols-sharp">
-            dashboard
+            fork_right
           </span>
-          <h3>Dashboard</h3>
+          <h3>Route</h3>
         </a>
         <a href="#">
           <span class="material-symbols-sharp">
-            dashboard
+            paid
           </span>
-          <h3>Dashboard</h3>
-        </a>
-        <a href="#">
-          <span class="material-symbols-sharp">
-            dashboard
-          </span>
-          <h3>Dashboard</h3>
+          <h3>Payment</h3>
         </a>
         <a href="#">
           <span class="material-symbols-sharp">
