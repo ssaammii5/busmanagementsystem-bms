@@ -1,7 +1,7 @@
 # busmanagementsystem-bms
 
 Database name:
-bus_management
+
  
 
 Bus Table: 
