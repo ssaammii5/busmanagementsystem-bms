@@ -38,6 +38,7 @@ CREATE TABLE driver (
 
 -- Create the driver table
 
+```sql
 CREATE TABLE driver (
     driver_id INT AUTO_INCREMENT PRIMARY KEY,
     d_name VARCHAR(50),
@@ -45,7 +46,7 @@ CREATE TABLE driver (
     d_license_no VARCHAR(50) UNIQUE,
     d_join_date DATE
 ) AUTO_INCREMENT = 1000;
-
+```
 
 INSERT INTO driver (d_name, d_address, d_license_no, d_join_date)
 VALUES ('John Doe', '123 Main St', 'ABC123', '2023-06-10');
