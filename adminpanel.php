@@ -19,7 +19,7 @@
       <div class="top">
         <div class="logo">
           <img src="./asset/logo.png" alt="">
-          <h2>BUS MANAGEMENT SYSTEM</h2>
+          <h2>BMS</h2>
         </div>
         <div class="close" id="close-btn">
           <span class="material-symbols-sharp">
@@ -34,7 +34,7 @@
           </span>
           <h3>Dashboard</h3>
         </a>
-        <a href="#">
+        <a href="#" class="active">
           <span class="material-symbols-sharp">
             assignment_ind
           </span>
@@ -72,6 +72,26 @@
         </a>
       </div>
     </aside>
+    <!-----------------END OF ASIDE------------------->
+    <main>
+      <h1>Dashboard</h1>
+
+      <div class="date">
+        <input type="date">
+      </div>
+
+      <div class="insights">
+        <div class="sales">
+          <span class="material-icons-sharp">analytics</span>
+          <div>
+            <div>
+              <h3>Total Sales</h3>
+              <h1>$25,024</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 </body>
 
