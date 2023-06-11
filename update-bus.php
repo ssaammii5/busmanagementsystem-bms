@@ -93,7 +93,7 @@ if (isset($_POST["submit"])) {
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class=" container-fluid  ">
-          <a class="navbar-brand" href="#"> Dashboard </a>
+          <a class="navbar-brand" href="#"> Update Bus</a>
         </div>
       </nav>
       <!-- End Navbar -->
