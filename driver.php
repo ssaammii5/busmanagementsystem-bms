@@ -81,7 +81,7 @@ if (isset($_POST["submit"])) {
             </a>
           </li>
           <li class="nav-item active active-pro">
-            <a class="nav-link active" href="">
+            <a class="nav-link active" href="./login.php">
               <i class="fa fa-sign-out" aria-hidden="true"></i>
               <p>Logout</p>
             </a>

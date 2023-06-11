@@ -25,7 +25,7 @@
 
         <h1 class="text-xl md:text-lg font-bold leading-tight mt-12">Log in to your account</h1>
 
-        <form class="mt-6" action="#" method="POST">
+        <form class="mt-6" action="./driver.php" method="POST">
           <div>
             <label class="block text-gray-700">Username</label>
             <input type="text" name="" id="" placeholder="Enter Username"
@@ -35,7 +35,7 @@
 
           <div class="mt-4">
             <label class="block text-gray-700">Password</label>
-            <input type="password" name="" id="" placeholder="Enter Password" minlength="6" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+            <input type="password" name="" id="" placeholder="Enter Password" class="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
               focus:bg-white focus:outline-none" required>
           </div>
 
