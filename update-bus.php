@@ -1,5 +1,6 @@
 <?php
 include "connection.php";
+$bus_id = $_GET["bus_id"];
 
 if (isset($_POST["submit"])) {
   $model_number = $_POST['model_number'];
@@ -8,9 +9,10 @@ if (isset($_POST["submit"])) {
   $bus_type = $_POST['bus_type'];
   $total_seat = $_POST['total_seat'];
 
-  $sql = "INSERT INTO `bus`(`model_number`, `licence_number`, `mileage`, `bus_type`, `total_seat`) VALUES ('$model_number','$licence_number','$mileage', '$bus_type', '$total_seat')";
+  $sql = "UPDATE `bus` SET `model_number`='$model_number',`licence_number`='$licence_number',`mileage`='$mileage',`bus_type`='$bus_type', `total_seat`='$bus_type' WHERE bus_id = $bus_id";
 
   $result = mysqli_query($conn, $sql);
+
 }
 
 ?>
@@ -107,19 +109,27 @@ if (isset($_POST["submit"])) {
 
           <br>
 
+          <?php
+          $sql = "SELECT * FROM `bus` WHERE bus_id = $bus_id";
+          $result = mysqli_query($conn, $sql);
+          $row = mysqli_fetch_assoc($result);
+          ?>
 
           <form action="" method="post">
             <div class="form-group">
               <label class="form-label">Model Number</label>
-              <input type="text" class="form-control" name="model_number" placeholder="Enter Bus Model Number">
+              <input type="text" class="form-control" name="model_number" value="<?php echo $row['model_number'] ?>"
+                placeholder="Enter Bus Model Number">
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Licence Number</label>
-              <input type="text" class="form-control" name="licence_number" placeholder="Enter Bus Licence Number">
+              <input type="text" class="form-control" name="licence_number" value="<?php echo $row['licence_number'] ?>"
+                placeholder="Enter Bus Licence Number">
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Mileage</label>
-              <input type="text" class="form-control" name="mileage" placeholder="Enter total distance travelled">
+              <input type="text" class="form-control" name="mileage" value="<?php echo $row['mileage'] ?>"
+                placeholder="Enter total distance travelled">
             </div>
 
             <div class="form-group">
@@ -128,21 +138,22 @@ if (isset($_POST["submit"])) {
               &nbsp;
               &nbsp;
               &nbsp;
-              <input type="radio" class="form-check-input" name="bus_type" id="AC" value="AC">
+              <input type="radio" class="form-check-input" name="bus_type" id="AC" value="AC" <?php echo ($row["bus_type"] == 'AC') ? "checked" : ""; ?>>
               <label for="male" class="form-input-label">AC</label>
               &nbsp;
               &nbsp;
               &nbsp;
               &nbsp;
               &nbsp;
-              <input type="radio" class="form-check-input" name="bus_type" id="NON-AC" value="NON-AC">
+              <input type="radio" class="form-check-input" name="bus_type" id="NON-AC" value="NON-AC" <?php echo ($row["bus_type"] == 'NON-AC') ? "checked" : ""; ?>>
               <label for="female" class="form-input-label">NON-AC</label>
             </div>
 
 
             <div class="form-group">
               <label for="total_seat">Total Seat</label>
-              <input type="text" class="form-control" name="total_seat" placeholder="Enter total number of seat">
+              <input type="text" class="form-control" name="total_seat" value="<?php echo $row['total_seat'] ?>"
+                placeholder="Enter total number of seat">
             </div>
             <div>
               <button type="submit" class="btn btn-success" name="submit">Save</button>
