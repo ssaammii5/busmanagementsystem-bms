@@ -53,3 +53,22 @@ CREATE TABLE driver (
 INSERT INTO driver (d_name, d_address, d_license_no, d_join_date)
 VALUES ('John Doe', '123 Main St', 'ABC123', '2023-06-10');
 
+
+    //route table
+    
+CREATE TABLE route (
+    route_name VARCHAR(100),
+    route_id INT PRIMARY KEY
+);
+    //Bus_schedule table
+
+CREATE TABLE bus_schedule (
+    bus_id INT,
+    day VARCHAR(20),
+    time TIME,
+    driver_id INT,
+    route_id INT,
+    FOREIGN KEY (bus_id) REFERENCES Bus(bus_id),
+    FOREIGN KEY (driver_id) REFERENCES Driver(driver_id),
+    FOREIGN KEY (route_id) REFERENCES Route(route_id)
+);
