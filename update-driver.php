@@ -1,6 +1,25 @@
 <?php
 include "connection.php";
+$driver_id = $_GET["driver_id"];
+
+if (isset($_POST["submit"])) {
+  $driver_name = $_POST['driver_name'];
+  $address = $_POST['address'];
+  $contact = $_POST['contact'];
+  $nid = $_POST['nid'];
+  $licence = $_POST['licence'];
+  $join_date = $_POST['join_date'];
+
+
+
+  $sql = "UPDATE `driver` SET `driver_name`='$driver_name',`address`='$address',`contact`='$contact',`nid`='$nid', `licence`='$licence', `join_date`='$join_date' WHERE driver_id = $driver_id";
+
+  $result = mysqli_query($conn, $sql);
+
+}
+
 ?>
+
 
 <html lang="en">
 
@@ -88,67 +107,52 @@ include "connection.php";
         <div class="container-fluid">
 
           <div class="d-flex justify-content-around">
-            <a href="./driver.php" class="btn btn-primary">Add New Driver</a>
-            <a href="./show-driver.php" class="btn btn-success">View Driver</a>
+            <a class="btn btn-primary" href="./driver.php" role="button">Add New Driver</a>
+            <a class="btn btn-success" href="./show-driver.php" role="button">View Driver</a>
           </div>
 
           <br>
 
 
-          <table class="table table-hover text-center">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col">Driver ID</th>
-                <th scope="col">Driver Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Contact Number</th>
-                <th scope="col">NID</th>
-                <th scope="col">Licence No.</th>
-                <th scope="col">Joining Date</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $sql = "SELECT * FROM `driver`";
-              $result = mysqli_query($conn, $sql);
-              while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-                <tr>
-                  <td>
-                    <?php echo $row["driver_id"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["driver_name"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["address"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["contact"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["nid"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["licence"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["join_date"] ?>
-                  </td>
-                  <td>
-                    <a href="update-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
-                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="delete-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
-                        class="fa fa-trash-o" aria-hidden="true"></i></a>
-                  </td>
-                </tr>
-                <?php
-              }
-              ?>
-            </tbody>
-          </table>
+          <?php
+          $sql = "SELECT * FROM `driver` WHERE driver_id = $driver_id";
+          $result = mysqli_query($conn, $sql);
+          $row = mysqli_fetch_assoc($result);
+          ?>
 
+          <form action="" method="post">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Driver Name</label>
+              <input type="text" class="form-control" name="driver_name" value="<?php echo $row['driver_name'] ?>"
+                placeholder=" Enter driver name">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Address</label>
+              <input type="text" class="form-control" name="address" value="<?php echo $row['address'] ?>"
+                placeholder="Enter driver address">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Contact Number</label>
+              <input type="text" class="form-control" name="contact" value="<?php echo $row['contact'] ?>"
+                placeholder="Enter driver contact number">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">National Identity Card (NID) Number</label>
+              <input type="text" class="form-control" name="nid" value="<?php echo $row['nid'] ?>"
+                placeholder="Enter driver NID">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">License Number</label>
+              <input type="text" class="form-control" name="licence" value="<?php echo $row['licence'] ?>"
+                placeholder="Enter Driver License Number">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Joining Date</label>
+              <input type="date" class="form-control" name="join_date" value="<?php echo $row['join_date'] ?>"
+                placeholder="Enter date">
+            </div>
+            <input class="btn btn-primary" type="submit" name="submit">
+          </form>
         </div>
       </div>
 
