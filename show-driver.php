@@ -137,10 +137,10 @@ include "connection.php";
                     <?php echo $row["join_date"] ?>
                   </td>
                   <td>
-                    <a href="update-bus.php?id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
+                    <a href="update-bus.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
                         class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="delete-bus.php?id=<?php echo $row["driver_id"] ?>" class="link-dark"><i class="fa fa-trash-o"
-                        aria-hidden="true"></i></a>
+                    <a href="delete-bus.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
+                        class="fa fa-trash-o" aria-hidden="true"></i></a>
                   </td>
                 </tr>
                 <?php

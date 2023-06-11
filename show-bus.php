@@ -133,10 +133,10 @@ include "connection.php";
                     <?php echo $row["total_seat"] ?>
                   </td>
                   <td>
-                    <a href="update-bus.php?id=<?php echo $row["bus_id"] ?>" class="link-dark"><i
+                    <a href="update-bus.php?bus_id=<?php echo $row["bus_id"] ?>" class="link-dark"><i
                         class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="delete-bus.php?id=<?php echo $row["bus_id"] ?>" class="link-dark"><i class="fa fa-trash-o"
-                        aria-hidden="true"></i></a>
+                    <a href="delete-bus.php?bus_id=<?php echo $row["bus_id"] ?>" class="link-dark"><i
+                        class="fa fa-trash-o" aria-hidden="true"></i></a>
                   </td>
                 </tr>
                 <?php

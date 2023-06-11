@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
   $bus_type = $_POST['bus_type'];
   $total_seat = $_POST['total_seat'];
 
-  $sql = "UPDATE `bus` SET `model_number`='$model_number',`licence_number`='$licence_number',`mileage`='$mileage',`bus_type`='$bus_type', `total_seat`='$bus_type' WHERE bus_id = $bus_id";
+  $sql = "UPDATE `bus` SET `model_number`='$model_number',`licence_number`='$licence_number',`mileage`='$mileage',`bus_type`='$bus_type', `total_seat`='$total_seat' WHERE bus_id = $bus_id";
 
   $result = mysqli_query($conn, $sql);
 
@@ -149,7 +149,6 @@ if (isset($_POST["submit"])) {
               <label for="female" class="form-input-label">NON-AC</label>
             </div>
 
-
             <div class="form-group">
               <label for="total_seat">Total Seat</label>
               <input type="text" class="form-control" name="total_seat" value="<?php echo $row['total_seat'] ?>"
@@ -157,7 +156,7 @@ if (isset($_POST["submit"])) {
             </div>
             <div>
               <button type="submit" class="btn btn-success" name="submit">Save</button>
-              <a href="index.php" class="btn btn-danger">Cancel</a>
+              <a href="./show-bus.php" class="btn btn-danger">Cancel</a>
             </div>
           </form>
         </div>
