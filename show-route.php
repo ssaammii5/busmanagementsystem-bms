@@ -106,25 +106,25 @@ include "connection.php";
             </thead>
             <tbody>
               <?php
-              $sql = "SELECT * FROM `driver`";
+              $sql = "SELECT * FROM `route`";
               $result = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                 <tr>
                   <td>
-                    <?php echo $row["driver_id"] ?>
+                    <?php echo $row["id"] ?>
                   </td>
                   <td>
-                    <?php echo $row["driver_name"] ?>
+                    <?php echo $row["source"] ?>
                   </td>
                   <td>
-                    <?php echo $row["driver_name"] ?>
+                    <?php echo $row["destination"] ?>
                   </td>
                   <td>
-                    <a href="update-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
+                    <a href="update-route.php?id=<?php echo $row["id"] ?>" class="link-dark"><i
                         class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="delete-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
-                        class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a href="delete-route.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-trash-o"
+                        aria-hidden="true"></i></a>
                   </td>
                 </tr>
                 <?php

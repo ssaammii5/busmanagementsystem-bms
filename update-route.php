@@ -7,7 +7,6 @@ if (isset($_POST["submit"])) {
   $destination = $_POST['destination'];
 
 
-  $sql = "INSERT INTO `route`(`source`, `destination`) VALUES ('$source','$destination')";
   $sql = "UPDATE `route` SET `source`='$source',`destination`='$destination' WHERE id = $route_id";
 
   $result = mysqli_query($conn, $sql);
@@ -110,44 +109,41 @@ if (isset($_POST["submit"])) {
 
 
           <?php
-          $sql = "SELECT * FROM `driver` WHERE driver_id = $driver_id";
+          $sql = "SELECT * FROM `route` WHERE id = $route_id";
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_assoc($result);
           ?>
 
+
           <form action="" method="post">
+
             <div class="form-group">
-              <label for="exampleFormControlInput1">Driver Name</label>
-              <input type="text" class="form-control" name="driver_name" value="<?php echo $row['driver_name'] ?>"
-                placeholder=" Enter driver name">
+              <label for="exampleFormControlInput1">Source</label>
+              <select name="source" class="form-control">
+                <option value="" disabled>Select</option>
+                <option value="Dhaka" <?php if ($source === 'Dhaka')
+                  echo ' selected'; ?>>Dhaka</option>
+                <option value="Barisal" <?php if ($source === 'Barisal')
+                  echo ' selected'; ?>>Barisal</option>
+                <option value="Patuakhali" <?php if ($source === 'Patuakhali')
+                  echo ' selected'; ?>>Patuakhali</option>
+              </select>
             </div>
+
             <div class="form-group">
-              <label for="exampleFormControlInput1">Address</label>
-              <input type="text" class="form-control" name="address" value="<?php echo $row['address'] ?>"
-                placeholder="Enter driver address">
+              <label for="exampleFormControlInput1">Destination</label>
+              <select name="destination" class="form-control">
+                <option value="" selected disabled>Select</option>
+                <option value="Dhaka">Dhaka</option>
+                <option value="Barisal">Barisal</option>
+                <option value="Patuakhali">Patuakhali</option>
+              </select>
             </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Contact Number</label>
-              <input type="text" class="form-control" name="contact" value="<?php echo $row['contact'] ?>"
-                placeholder="Enter driver contact number">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">National Identity Card (NID) Number</label>
-              <input type="text" class="form-control" name="nid" value="<?php echo $row['nid'] ?>"
-                placeholder="Enter driver NID">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">License Number</label>
-              <input type="text" class="form-control" name="licence" value="<?php echo $row['licence'] ?>"
-                placeholder="Enter Driver License Number">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Joining Date</label>
-              <input type="date" class="form-control" name="join_date" value="<?php echo $row['join_date'] ?>"
-                placeholder="Enter date">
-            </div>
+
             <input class="btn btn-primary" type="submit" name="submit">
+
           </form>
+
         </div>
       </div>
 
