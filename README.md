@@ -72,3 +72,19 @@ CREATE TABLE bus_schedule (
     FOREIGN KEY (driver_id) REFERENCES Driver(driver_id),
     FOREIGN KEY (route_id) REFERENCES Route(route_id)
 );
+
+bus route
+Dhaka
+Naraynganz
+Patuakhali
+Kuakata
+Barisal
+Vola
+Barguna
+Khulna
+Jessore
+Kushtia
+Bagerhat
+Cumilla
+Chittagong
+Cox's Bazar
