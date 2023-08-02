@@ -1,13 +1,13 @@
 <?php
 include "connection.php";
-$route_id = $_GET["id"];
+$id = $_GET["id"];
 
 if (isset($_POST["submit"])) {
   $source = $_POST['source'];
   $destination = $_POST['destination'];
 
 
-  $sql = "UPDATE `route` SET `source`='$source',`destination`='$destination' WHERE id = $route_id";
+  $sql = "UPDATE `route` SET `source`='$source',`destination`='$destination' WHERE id = $id";
 
   $result = mysqli_query($conn, $sql);
 }
@@ -101,15 +101,15 @@ if (isset($_POST["submit"])) {
         <div class="container-fluid">
 
           <div class="d-flex justify-content-around">
-            <a class="btn btn-primary" href="./driver.php" role="button">Add New Driver</a>
-            <a class="btn btn-success" href="./show-driver.php" role="button">View Driver</a>
+            <a class="btn btn-primary" href="./driver.php" role="button">Add New Route</a>
+            <a class="btn btn-success" href="./show-route.php" role="button">View Route</a>
           </div>
 
           <br>
 
 
           <?php
-          $sql = "SELECT * FROM `route` WHERE id = $route_id";
+          $sql = "SELECT * FROM `route` WHERE id = $id";
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_assoc($result);
           ?>
@@ -121,22 +121,42 @@ if (isset($_POST["submit"])) {
               <label for="exampleFormControlInput1">Source</label>
               <select name="source" class="form-control">
                 <option value="" disabled>Select</option>
-                <option value="Dhaka" <?php if ($source === 'Dhaka')
-                  echo ' selected'; ?>>Dhaka</option>
-                <option value="Barisal" <?php if ($source === 'Barisal')
+                <option value="Barisal" <?php if ($row['source'] === 'Barisal')
                   echo ' selected'; ?>>Barisal</option>
-                <option value="Patuakhali" <?php if ($source === 'Patuakhali')
-                  echo ' selected'; ?>>Patuakhali</option>
+                <option value="Barguna" <?php if ($row['source'] === 'Barguna')
+                  echo ' selected'; ?>>Barguna</option>
+                <option value="Bhola" <?php if ($row['source'] === 'Bhola')
+                  echo ' selected'; ?>>Bhola</option>
+                <option value="Jhalokati" <?php if ($row['source'] === 'Jhalokati')
+                  echo ' selected'; ?>>Jhalokati
+                </option>
+                <option value="Patuakhali" <?php if ($row['source'] === 'Patuakhali')
+                  echo ' selected'; ?>>Patuakhali
+                </option>
+                <option value="Pirojpur" <?php if ($row['source'] === 'Pirojpur')
+                  echo ' selected'; ?>>Pirojpur</option>
               </select>
             </div>
 
             <div class="form-group">
               <label for="exampleFormControlInput1">Destination</label>
               <select name="destination" class="form-control">
-                <option value="" selected disabled>Select</option>
-                <option value="Dhaka">Dhaka</option>
-                <option value="Barisal">Barisal</option>
-                <option value="Patuakhali">Patuakhali</option>
+                <option value="" disabled>Select</option>
+                <option value="Barisal" <?php if ($row['destination'] === 'Barisal')
+                  echo ' selected'; ?>>Barisal</option>
+                <option value="Barguna" <?php if ($row['destination'] === 'Barguna')
+                  echo ' selected'; ?>>Barguna</option>
+                <option value="Bhola" <?php if ($row['destination'] === 'Bhola')
+                  echo ' selected'; ?>>Bhola</option>
+                <option value="Jhalokati" <?php if ($row['destination'] === 'Jhalokati')
+                  echo ' selected'; ?>>Jhalokati
+                </option>
+                <option value="Patuakhali" <?php if ($row['destination'] === 'Patuakhali')
+                  echo ' selected'; ?>>Patuakhali
+                </option>
+                <option value="Pirojpur" <?php if ($row['destination'] === 'Pirojpur')
+                  echo ' selected'; ?>>Pirojpur
+                </option>
               </select>
             </div>
 

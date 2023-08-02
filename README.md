@@ -79,7 +79,7 @@ Naraynganz
 Patuakhali
 Kuakata
 Barisal
-Vola
+Bhola
 Barguna
 Khulna
 Jessore

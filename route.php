@@ -115,9 +115,12 @@ if (isset($_POST["submit"])) {
               <label for="exampleFormControlInput1">Source</label>
               <select name="source" class="form-control">
                 <option value="" selected disabled>Select</option>
-                <option value="Dhaka">Dhaka</option>
                 <option value="Barisal">Barisal</option>
+                <option value="Barguna">Barguna</option>
+                <option value="Bhola">Bhola</option>
+                <option value="Jhalokati">Jhalokati</option>
                 <option value="Patuakhali">Patuakhali</option>
+                <option value="Pirojpur">Pirojpur</option>
               </select>
             </div>
 
@@ -125,9 +128,12 @@ if (isset($_POST["submit"])) {
               <label for="exampleFormControlInput1">Destination</label>
               <select name="destination" class="form-control">
                 <option value="" selected disabled>Select</option>
-                <option value="Dhaka">Dhaka</option>
                 <option value="Barisal">Barisal</option>
+                <option value="Barguna">Barguna</option>
+                <option value="Bhola">Bhola</option>
+                <option value="Jhalokati">Jhalokati</option>
                 <option value="Patuakhali">Patuakhali</option>
+                <option value="Pirojpur">Pirojpur</option>
               </select>
             </div>
 
