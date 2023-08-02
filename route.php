@@ -4,14 +4,11 @@
 include "connection.php";
 
 if (isset($_POST["submit"])) {
-  $driver_name = $_POST['driver_name'];
-  $address = $_POST['address'];
-  $contact = $_POST['contact'];
-  $nid = $_POST['nid'];
-  $licence = $_POST['licence'];
-  $join_date = $_POST['join_date'];
+  $source = $_POST['source'];
+  $destination = $_POST['destination'];
 
-  $sql = "INSERT INTO `driver`(`driver_name`, `address`, `contact`, `nid`, `licence`,`join_date`) VALUES ('$driver_name','$address','$contact', '$nid', '$licence','$join_date')";
+
+  $sql = "INSERT INTO `route`(`source`, `destination`) VALUES ('$source','$destination')";
 
   $result = mysqli_query($conn, $sql);
 }
@@ -95,7 +92,7 @@ if (isset($_POST["submit"])) {
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class=" container-fluid  ">
-          <a class="navbar-brand" href="">Add New Driver</a>
+          <a class="navbar-brand" href="">Route</a>
         </div>
       </nav>
       <!-- End Navbar -->
@@ -113,13 +110,25 @@ if (isset($_POST["submit"])) {
 
 
           <form action="" method="post">
+
             <div class="form-group">
               <label for="exampleFormControlInput1">Source</label>
-              <input type="text" class="form-control" name="driver_name" placeholder="Enter driver name" required>
+              <select name="source" class="form-control">
+                <option value="" selected disabled>Select</option>
+                <option value="Dhaka">Dhaka</option>
+                <option value="Barisal">Barisal</option>
+                <option value="Patuakhali">Patuakhali</option>
+              </select>
             </div>
+
             <div class="form-group">
-              <label for="exampleFormControlInput1">Destination</label>
-              <input type="text" class="form-control" name="address" placeholder="Enter driver address" required>
+              <label for="exampleFormControlInput1">Source</label>
+              <select name="destination" class="form-control">
+                <option value="" selected disabled>Select</option>
+                <option value="Dhaka">Dhaka</option>
+                <option value="Barisal">Barisal</option>
+                <option value="Patuakhali">Patuakhali</option>
+              </select>
             </div>
 
             <input class="btn btn-primary" type="submit" name="submit">
