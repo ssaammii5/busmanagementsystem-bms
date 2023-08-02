@@ -1,20 +1,6 @@
-<?php include "logincheck.php" ?>
-
 <?php
 include "connection.php";
-
-if (isset($_POST["submit"])) {
-  $source = $_POST['source'];
-  $destination = $_POST['destination'];
-
-
-  $sql = "INSERT INTO `route`(`source`, `destination`) VALUES ('$source','$destination')";
-
-  $result = mysqli_query($conn, $sql);
-}
-
 ?>
-
 
 <html lang="en">
 
@@ -55,14 +41,14 @@ if (isset($_POST["submit"])) {
               <p>Bus</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="./driver.php">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <p>Driver</p>
             </a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="./route.php">
+          <li>
+            <a class="nav-link" href="./typography.html">
               <i class="fa fa-road" aria-hidden="true"></i>
               <p>Route</p>
             </a>
@@ -92,7 +78,7 @@ if (isset($_POST["submit"])) {
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class=" container-fluid  ">
-          <a class="navbar-brand" href="">Route</a>
+          <a class="navbar-brand" href="#"> View All Routes</a>
         </div>
       </nav>
       <!-- End Navbar -->
@@ -102,38 +88,51 @@ if (isset($_POST["submit"])) {
         <div class="container-fluid">
 
           <div class="d-flex justify-content-around">
-            <a class="btn btn-primary" href="./route.php" role="button">Add New Route</a>
-            <a class="btn btn-success" href="./show-route.php" role="button">View Route</a>
+            <a href="./route.php" class="btn btn-primary">Add New Route</a>
+            <a href="./show-route.php" class="btn btn-success">View Route</a>
           </div>
 
           <br>
 
 
-          <form action="" method="post">
+          <table class="table table-hover text-center">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Route ID</th>
+                <th scope="col">Source</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $sql = "SELECT * FROM `driver`";
+              $result = mysqli_query($conn, $sql);
+              while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <tr>
+                  <td>
+                    <?php echo $row["driver_id"] ?>
+                  </td>
+                  <td>
+                    <?php echo $row["driver_name"] ?>
+                  </td>
+                  <td>
+                    <?php echo $row["driver_name"] ?>
+                  </td>
+                  <td>
+                    <a href="update-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
+                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="delete-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
+                        class="fa fa-trash-o" aria-hidden="true"></i></a>
+                  </td>
+                </tr>
+                <?php
+              }
+              ?>
+            </tbody>
+          </table>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Source</label>
-              <select name="source" class="form-control">
-                <option value="" selected disabled>Select</option>
-                <option value="Dhaka">Dhaka</option>
-                <option value="Barisal">Barisal</option>
-                <option value="Patuakhali">Patuakhali</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Destination</label>
-              <select name="destination" class="form-control">
-                <option value="" selected disabled>Select</option>
-                <option value="Dhaka">Dhaka</option>
-                <option value="Barisal">Barisal</option>
-                <option value="Patuakhali">Patuakhali</option>
-              </select>
-            </div>
-
-            <input class="btn btn-primary" type="submit" name="submit">
-
-          </form>
         </div>
       </div>
 

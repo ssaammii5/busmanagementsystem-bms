@@ -1,7 +1,6 @@
-<?php include "logincheck.php" ?>
-
 <?php
 include "connection.php";
+$route_id = $_GET["driver_id"];
 
 if (isset($_POST["submit"])) {
   $source = $_POST['source'];
@@ -9,6 +8,7 @@ if (isset($_POST["submit"])) {
 
 
   $sql = "INSERT INTO `route`(`source`, `destination`) VALUES ('$source','$destination')";
+  $sql = "UPDATE `route` SET `source`='$source',`destination`='$destination' WHERE id = $source";
 
   $result = mysqli_query($conn, $sql);
 }
@@ -55,14 +55,14 @@ if (isset($_POST["submit"])) {
               <p>Bus</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="./driver.php">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <p>Driver</p>
             </a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="./route.php">
+          <li>
+            <a class="nav-link" href="./typography.html">
               <i class="fa fa-road" aria-hidden="true"></i>
               <p>Route</p>
             </a>
@@ -92,7 +92,7 @@ if (isset($_POST["submit"])) {
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class=" container-fluid  ">
-          <a class="navbar-brand" href="">Route</a>
+          <a class="navbar-brand" href="#">Update Driver</a>
         </div>
       </nav>
       <!-- End Navbar -->
@@ -102,37 +102,51 @@ if (isset($_POST["submit"])) {
         <div class="container-fluid">
 
           <div class="d-flex justify-content-around">
-            <a class="btn btn-primary" href="./route.php" role="button">Add New Route</a>
-            <a class="btn btn-success" href="./show-route.php" role="button">View Route</a>
+            <a class="btn btn-primary" href="./driver.php" role="button">Add New Driver</a>
+            <a class="btn btn-success" href="./show-driver.php" role="button">View Driver</a>
           </div>
 
           <br>
 
 
+          <?php
+          $sql = "SELECT * FROM `driver` WHERE driver_id = $driver_id";
+          $result = mysqli_query($conn, $sql);
+          $row = mysqli_fetch_assoc($result);
+          ?>
+
           <form action="" method="post">
-
             <div class="form-group">
-              <label for="exampleFormControlInput1">Source</label>
-              <select name="source" class="form-control">
-                <option value="" selected disabled>Select</option>
-                <option value="Dhaka">Dhaka</option>
-                <option value="Barisal">Barisal</option>
-                <option value="Patuakhali">Patuakhali</option>
-              </select>
+              <label for="exampleFormControlInput1">Driver Name</label>
+              <input type="text" class="form-control" name="driver_name" value="<?php echo $row['driver_name'] ?>"
+                placeholder=" Enter driver name">
             </div>
-
             <div class="form-group">
-              <label for="exampleFormControlInput1">Destination</label>
-              <select name="destination" class="form-control">
-                <option value="" selected disabled>Select</option>
-                <option value="Dhaka">Dhaka</option>
-                <option value="Barisal">Barisal</option>
-                <option value="Patuakhali">Patuakhali</option>
-              </select>
+              <label for="exampleFormControlInput1">Address</label>
+              <input type="text" class="form-control" name="address" value="<?php echo $row['address'] ?>"
+                placeholder="Enter driver address">
             </div>
-
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Contact Number</label>
+              <input type="text" class="form-control" name="contact" value="<?php echo $row['contact'] ?>"
+                placeholder="Enter driver contact number">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">National Identity Card (NID) Number</label>
+              <input type="text" class="form-control" name="nid" value="<?php echo $row['nid'] ?>"
+                placeholder="Enter driver NID">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">License Number</label>
+              <input type="text" class="form-control" name="licence" value="<?php echo $row['licence'] ?>"
+                placeholder="Enter Driver License Number">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Joining Date</label>
+              <input type="date" class="form-control" name="join_date" value="<?php echo $row['join_date'] ?>"
+                placeholder="Enter date">
+            </div>
             <input class="btn btn-primary" type="submit" name="submit">
-
           </form>
         </div>
       </div>
