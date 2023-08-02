@@ -41,20 +41,20 @@ include "connection.php";
               <p>Bus</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li>
             <a class="nav-link" href="./driver.php">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <p>Driver</p>
             </a>
           </li>
-          <li>
+          <li class="nav-item active">
             <a class="nav-link" href="./route.php">
               <i class="fa fa-road" aria-hidden="true"></i>
               <p>Route</p>
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./icons.html">
+            <a class="nav-link" href="./bus-schedule.php">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
               <p>Bus Schedule</p>
             </a>

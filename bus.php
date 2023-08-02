@@ -61,7 +61,7 @@ if (isset($_POST["submit"])) {
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./typography.html">
+            <a class="nav-link" href="./route.php">
               <i class="fa fa-road" aria-hidden="true"></i>
               <p>Route</p>
             </a>
@@ -115,11 +115,13 @@ if (isset($_POST["submit"])) {
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Licence Number</label>
-              <input type="text" class="form-control" name="licence_number" placeholder="Enter Bus Licence Number" required>
+              <input type="text" class="form-control" name="licence_number" placeholder="Enter Bus Licence Number"
+                required>
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Mileage</label>
-              <input type="text" class="form-control" name="mileage" placeholder="Enter total distance travelled" required>
+              <input type="text" class="form-control" name="mileage" placeholder="Enter total distance travelled"
+                required>
             </div>
 
             <div class="form-group">

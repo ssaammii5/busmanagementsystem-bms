@@ -54,13 +54,13 @@ if (isset($_POST["submit"])) {
               <p>Bus</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li>
             <a class="nav-link" href="./driver.php">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <p>Driver</p>
             </a>
           </li>
-          <li>
+          <li class="nav-item active">
             <a class="nav-link" href="./typography.html">
               <i class="fa fa-road" aria-hidden="true"></i>
               <p>Route</p>
@@ -114,7 +114,14 @@ if (isset($_POST["submit"])) {
           $row = mysqli_fetch_assoc($result);
           ?>
 
-
+          <div>
+            <p class="h5 text-muted">Route ID:
+              <?php
+              echo $row["id"];
+              ?>
+            </p>
+            <br>
+          </div>
           <form action="" method="post">
 
             <div class="form-group">

@@ -63,13 +63,13 @@ if (isset($_POST["submit"])) {
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./typography.html">
+            <a class="nav-link" href="./route.php">
               <i class="fa fa-road" aria-hidden="true"></i>
               <p>Route</p>
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./icons.html">
+            <a class="nav-link" href="./bus-schedule.php">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
               <p>Bus Schedule</p>
             </a>
