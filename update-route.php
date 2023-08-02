@@ -1,6 +1,6 @@
 <?php
 include "connection.php";
-$route_id = $_GET["driver_id"];
+$route_id = $_GET["id"];
 
 if (isset($_POST["submit"])) {
   $source = $_POST['source'];
@@ -8,7 +8,7 @@ if (isset($_POST["submit"])) {
 
 
   $sql = "INSERT INTO `route`(`source`, `destination`) VALUES ('$source','$destination')";
-  $sql = "UPDATE `route` SET `source`='$source',`destination`='$destination' WHERE id = $source";
+  $sql = "UPDATE `route` SET `source`='$source',`destination`='$destination' WHERE id = $route_id";
 
   $result = mysqli_query($conn, $sql);
 }
