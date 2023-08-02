@@ -114,29 +114,14 @@ if (isset($_POST["submit"])) {
 
           <form action="" method="post">
             <div class="form-group">
-              <label for="exampleFormControlInput1">Driver Name</label>
+              <label for="exampleFormControlInput1">Source</label>
               <input type="text" class="form-control" name="driver_name" placeholder="Enter driver name" required>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Address</label>
+              <label for="exampleFormControlInput1">Destination</label>
               <input type="text" class="form-control" name="address" placeholder="Enter driver address" required>
             </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Contact Number</label>
-              <input type="text" class="form-control" name="contact" placeholder="Enter driver contact number" required>
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">National Identity Card (NID) Number</label>
-              <input type="text" class="form-control" name="nid" placeholder="Enter driver NID" required>
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">License Number</label>
-              <input type="text" class="form-control" name="licence" placeholder="Enter Driver License Number" required>
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Joining Date</label>
-              <input type="date" class="form-control" name="join_date" placeholder="Enter date" required>
-            </div>
+
             <input class="btn btn-primary" type="submit" name="submit">
           </form>
         </div>
