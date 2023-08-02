@@ -1,4 +1,4 @@
-<?php include "logincheck.php"; ?>
+<?php include "logincheck.php" ?>
 
 <?php
 include "connection.php";
@@ -58,13 +58,13 @@ if (isset($_POST["submit"])) {
               <p>Bus</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="./driver.php">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <p>Driver</p>
             </a>
           </li>
-          <li>
+          <li class="nav-item active">
             <a class="nav-link" href="./route.php">
               <i class="fa fa-road" aria-hidden="true"></i>
               <p>Route</p>
