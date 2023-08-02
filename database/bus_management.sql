@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2023 at 08:50 AM
+-- Generation Time: Aug 02, 2023 at 03:28 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -67,20 +67,6 @@ INSERT INTO `bus` (`bus_id`, `model_number`, `licence_number`, `mileage`, `bus_t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bus_schedule`
---
-
-CREATE TABLE `bus_schedule` (
-  `bus_id` int(11) DEFAULT NULL,
-  `day` varchar(20) DEFAULT NULL,
-  `time` time DEFAULT NULL,
-  `driver_id` int(11) DEFAULT NULL,
-  `route_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `driver`
 --
 
@@ -99,8 +85,8 @@ CREATE TABLE `driver` (
 --
 
 INSERT INTO `driver` (`driver_id`, `driver_name`, `address`, `contact`, `nid`, `licence`, `join_date`) VALUES
-(1000, 'a', 'dhaka', '017777777', '123123', '123123', '2023-06-11'),
-(1003, 'b', 'barisal', '01666666666666', '99999999999', '8888888888888888', '2023-06-01');
+(1000, 'Rana Mia', 'dhaka', '017777777', '123123', '123123', '2023-06-11'),
+(1003, 'Kazi Mohammad', 'barisal', '01666666666666', '99999999999', '8888888888888888', '2023-06-01');
 
 -- --------------------------------------------------------
 
@@ -109,9 +95,41 @@ INSERT INTO `driver` (`driver_id`, `driver_name`, `address`, `contact`, `nid`, `
 --
 
 CREATE TABLE `route` (
-  `route_name` varchar(100) DEFAULT NULL,
-  `route_id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `source` varchar(50) DEFAULT NULL,
+  `destination` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `route`
+--
+
+INSERT INTO `route` (`id`, `source`, `destination`) VALUES
+(1, 'Patuakhali', 'Pirojpur'),
+(4, 'Jhalokati', 'Barisal'),
+(5, 'Barisal', 'Bhola');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `id` int(11) NOT NULL,
+  `departure` varchar(20) DEFAULT NULL,
+  `arrival` varchar(20) DEFAULT NULL,
+  `route_id` int(11) DEFAULT NULL,
+  `driver_id` int(11) DEFAULT NULL,
+  `bus_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `departure`, `arrival`, `route_id`, `driver_id`, `bus_id`) VALUES
+(1, '2023-08-01T19:27', '2023-08-03T19:27', 1, 1003, 1020);
 
 --
 -- Indexes for dumped tables
@@ -131,14 +149,6 @@ ALTER TABLE `bus`
   ADD UNIQUE KEY `licence_no` (`licence_number`);
 
 --
--- Indexes for table `bus_schedule`
---
-ALTER TABLE `bus_schedule`
-  ADD KEY `bus_id` (`bus_id`),
-  ADD KEY `driver_id` (`driver_id`),
-  ADD KEY `route_id` (`route_id`);
-
---
 -- Indexes for table `driver`
 --
 ALTER TABLE `driver`
@@ -150,7 +160,16 @@ ALTER TABLE `driver`
 -- Indexes for table `route`
 --
 ALTER TABLE `route`
-  ADD PRIMARY KEY (`route_id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `route_id` (`route_id`),
+  ADD KEY `driver_id` (`driver_id`),
+  ADD KEY `bus_id` (`bus_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -169,16 +188,28 @@ ALTER TABLE `driver`
   MODIFY `driver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1005;
 
 --
+-- AUTO_INCREMENT for table `route`
+--
+ALTER TABLE `route`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `bus_schedule`
+-- Constraints for table `schedule`
 --
-ALTER TABLE `bus_schedule`
-  ADD CONSTRAINT `bus_schedule_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `bus` (`bus_id`),
-  ADD CONSTRAINT `bus_schedule_ibfk_2` FOREIGN KEY (`driver_id`) REFERENCES `driver` (`driver_id`),
-  ADD CONSTRAINT `bus_schedule_ibfk_3` FOREIGN KEY (`route_id`) REFERENCES `route` (`route_id`);
+ALTER TABLE `schedule`
+  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `route` (`id`),
+  ADD CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`driver_id`) REFERENCES `driver` (`driver_id`),
+  ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`bus_id`) REFERENCES `bus` (`bus_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
