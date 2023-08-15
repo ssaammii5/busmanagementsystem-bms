@@ -91,6 +91,21 @@ include "connection.php";
             <a href="./payment.php" class="btn btn-primary">New Payment</a>
             <a href="./show-payment.php" class="btn btn-success">Payment Details</a>
           </div>
+          <p></p>
+
+          <!--from here-->
+          <form action="" method="GET">
+            <div class="input-group mb-3">
+              <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
+                echo $_GET['search'];
+              } ?>" class="form-control" placeholder="Search data">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </form>
+
+
+
+          <!--to here-->
 
           <br>
 
@@ -104,41 +119,92 @@ include "connection.php";
                 <th scope="col">Month</th>
                 <th scope="col">Year</th>
                 <th scope="col">Action</th>
+                <th scope="col">Invoice</th>
               </tr>
             </thead>
             <tbody>
               <?php
-              $sql = "SELECT * FROM `payment`";
-              $result = mysqli_query($conn, $sql);
-              while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-                <tr>
-                  <td>
-                    <?php echo $row["id"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["driver_id"] ?>
-                  </td>
-                  <td>
-                  ৳ <?php echo $row["salary"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["month"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["year"] ?>
-                  </td>
-                  <td>
-                    <a href="update-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
-                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="delete-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
-                        class="fa fa-trash-o" aria-hidden="true"></i></a>
-                  </td>
-                </tr>
-                <?php
+              if (isset($_GET['search'])) {
+                $filtervalues = $_GET['search'];
+                $query = "SELECT * FROM `payment` WHERE driver_id LIKE '%$filtervalues%' ";
+                $query_run = mysqli_query($conn, $query);
+
+                if (mysqli_num_rows($query_run) > 0) {
+                  while ($items = mysqli_fetch_assoc($query_run)) {
+                    ?>
+                    <tr>
+                      <td>
+                        <?= $items['id']; ?>
+                      </td>
+                      <td>
+                        <?= $items['driver_id']; ?>
+                      </td>
+                      <td>
+                        ৳
+                        <?= $items['salary']; ?>
+                      </td>
+                      <td>
+                        <?= $items['month']; ?>
+                      </td>
+                      <td>
+                        <?= $items['year']; ?>
+                      </td>
+                      <td>
+                        <a href="delete-payment.php?id=<?= $items['id']; ?>" class="link-dark">
+                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="">PDF</a>
+                      </td>
+                    </tr>
+                    <?php
+                  }
+                } else {
+                  ?>
+                  <tr>
+                    <td colspan="7">No Record Found</td>
+                  </tr>
+                  <?php
+                }
+              } else {
+                // Display all payment records if no search query is provided
+                $sql = "SELECT * FROM `payment`";
+                $result = mysqli_query($conn, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                  <tr>
+                    <td>
+                      <?= $row["id"] ?>
+                    </td>
+                    <td>
+                      <?= $row["driver_id"] ?>
+                    </td>
+                    <td>
+                      ৳
+                      <?= $row["salary"] ?>
+                    </td>
+                    <td>
+                      <?= $row["month"] ?>
+                    </td>
+                    <td>
+                      <?= $row["year"] ?>
+                    </td>
+                    <td>
+                      <a href="delete-payment.php?id=<?= $row["id"] ?>" class="link-dark">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="">PDF</a>
+                    </td>
+                  </tr>
+                  <?php
+                }
               }
               ?>
             </tbody>
+
           </table>
 
         </div>

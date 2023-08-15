@@ -1,15 +1,16 @@
-<?php include "logincheck.php"; ?>
+<?php include "logincheck.php" ?>
 
 <?php
 include "connection.php";
 
 if (isset($_POST["submit"])) {
   $driver_id = $_POST['driver_id'];
+  $salary = $_POST['salary'];
   $month = $_POST['month'];
   $year = $_POST['year'];
-  $salary = $_POST['salary'];
 
-  $sql = "INSERT INTO `payment`(`driver_id`, `address`, `contact`, `nid`, `licence`,`join_date`) VALUES ('$driver_name','$address','$contact', '$nid', '$licence','$join_date')";
+
+  $sql = "INSERT INTO `payment`(`driver_id`, `salary`, `month`, `year`) VALUES ('$driver_id','$salary', '$month', '$year')";
 
   $result = mysqli_query($conn, $sql);
 }
@@ -30,6 +31,23 @@ if (isset($_POST["submit"])) {
   <link href="https://demos.creative-tim.com/light-bootstrap-dashboard/assets/css/light-bootstrap-dashboard.css?v=2.0.1"
     rel="stylesheet">
 
+  <script>
+    function handleSelection() {
+      var selectElement = document.getElementById("previousInput");
+      var selectedValue = selectElement.value;
+
+
+      var selectedOption = selectElement.options[selectElement.selectedIndex];
+      var optionInfo = selectedOption.getAttribute("data-info");
+
+      document.getElementById("selectedValueInput").value = optionInfo;
+
+
+
+      // You can also display the stored value
+      console.log("Stored Value:", selectedValue);
+    }
+  </script>
 
 </head>
 
@@ -56,7 +74,7 @@ if (isset($_POST["submit"])) {
               <p>Bus</p>
             </a>
           </li>
-          <li>
+          <li class="nav-item">
             <a class="nav-link" href="./driver.php">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <p>Driver</p>
@@ -93,7 +111,7 @@ if (isset($_POST["submit"])) {
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class=" container-fluid  ">
-          <a class="navbar-brand" href="./payment.php">New Payment</a>
+          <a class="navbar-brand" href="">Route</a>
         </div>
       </nav>
       <!-- End Navbar -->
@@ -103,18 +121,19 @@ if (isset($_POST["submit"])) {
         <div class="container-fluid">
 
           <div class="d-flex justify-content-around">
-            <a class="btn btn-primary" href="./payment.php" role="button">New Payment</a>
+            <a class="btn btn-primary" href="./route.php" role="button">Add New Route</a>
             <a class="btn btn-success" href="./show-payment.php" role="button">Payment Details</a>
           </div>
 
           <br>
-
+          <button class="btn btn-light" onclick="handleSelection()">Show Salary</button>
+          <p></p>
 
           <form action="" method="post">
 
             <div class="form-group">
               <label for="exampleFormControlInput1">Driver ID</label>
-              <select name="route_id" class="form-control">
+              <select name="driver_id" class="form-control" id="previousInput">
                 <option value="" selected disabled>Select</option>
                 <?php
                 $sql = "SELECT * FROM `driver`";
@@ -122,7 +141,7 @@ if (isset($_POST["submit"])) {
 
                 if ($result->num_rows > 0) {
                   while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<option value="' . $row["driver_id"] . '">' . $row["driver_id"] . ' ~> ' . $row["driver_name"] . '</option>';
+                    echo '<option data-info="' . $row["salary"] . '" value="' . $row["driver_id"] . '">' . $row["driver_id"] . ' ~> ' . $row["driver_name"] . '</option>';
                   }
                 } else {
                   echo '<option value="" disabled>No options available</option>';
@@ -132,8 +151,17 @@ if (isset($_POST["submit"])) {
             </div>
 
             <div class="form-group">
+
+
+              <label for="exampleFormControlInput1">Salary</label>
+              <input type="text" id="selectedValueInput" class="form-control" name="salary"
+                placeholder="Enter Driver's Salary" value="">
+
+            </div>
+
+            <div class="form-group">
               <label for="exampleFormControlInput1">Month</label>
-              <select name="destination" class="form-control">
+              <select name="month" class="form-control">
                 <option value="" selected disabled>Select</option>
                 <option value="January">January</option>
                 <option value="February">February</option>
@@ -152,7 +180,7 @@ if (isset($_POST["submit"])) {
 
             <div class="form-group">
               <label for="exampleFormControlInput1">Year</label>
-              <select name="destination" class="form-control">
+              <select name="year" class="form-control">
                 <option value="" selected disabled>Select</option>
                 <option value="2023">2023</option>
                 <option value="2024">2024</option>
@@ -164,6 +192,7 @@ if (isset($_POST["submit"])) {
             </div>
 
             <input class="btn btn-primary" type="submit" name="submit">
+
           </form>
         </div>
       </div>
