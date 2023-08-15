@@ -1,22 +1,17 @@
+<?php include "logincheck.php"; ?>
+
 <?php
 include "connection.php";
-$driver_id = $_GET["driver_id"];
 
 if (isset($_POST["submit"])) {
-  $driver_name = $_POST['driver_name'];
-  $address = $_POST['address'];
-  $contact = $_POST['contact'];
-  $nid = $_POST['nid'];
-  $licence = $_POST['licence'];
-  $join_date = $_POST['join_date'];
+  $driver_id = $_POST['driver_id'];
+  $month = $_POST['month'];
+  $year = $_POST['year'];
   $salary = $_POST['salary'];
 
-
-
-  $sql = "UPDATE `driver` SET `driver_name`='$driver_name',`address`='$address',`contact`='$contact',`nid`='$nid', `licence`='$licence', `join_date`='$join_date',`salary`='$salary' WHERE driver_id = $driver_id";
+  $sql = "INSERT INTO `payment`(`driver_id`, `address`, `contact`, `nid`, `licence`,`join_date`) VALUES ('$driver_name','$address','$contact', '$nid', '$licence','$join_date')";
 
   $result = mysqli_query($conn, $sql);
-
 }
 
 ?>
@@ -61,14 +56,14 @@ if (isset($_POST["submit"])) {
               <p>Bus</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li>
             <a class="nav-link" href="./driver.php">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <p>Driver</p>
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./typography.html">
+            <a class="nav-link" href="./route.php">
               <i class="fa fa-road" aria-hidden="true"></i>
               <p>Route</p>
             </a>
@@ -79,8 +74,8 @@ if (isset($_POST["submit"])) {
               <p>Bus Schedule</p>
             </a>
           </li>
-          <li>
-            <a class="nav-link" href="./maps.html">
+          <li class="nav-item active">
+            <a class="nav-link" href="./payment.php">
               <i class="fa fa-money" aria-hidden="true"></i>
               <p>Payment</p>
             </a>
@@ -98,7 +93,7 @@ if (isset($_POST["submit"])) {
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class=" container-fluid  ">
-          <a class="navbar-brand" href="#">Update Driver</a>
+          <a class="navbar-brand" href="./payment.php">New Payment</a>
         </div>
       </nav>
       <!-- End Navbar -->
@@ -108,56 +103,66 @@ if (isset($_POST["submit"])) {
         <div class="container-fluid">
 
           <div class="d-flex justify-content-around">
-            <a class="btn btn-primary" href="./driver.php" role="button">Add New Driver</a>
-            <a class="btn btn-success" href="./show-driver.php" role="button">View Driver</a>
+            <a class="btn btn-primary" href="./payment.php" role="button">New Payment</a>
+            <a class="btn btn-success" href="./show-payment.php" role="button">Payment Details</a>
           </div>
 
           <br>
 
 
-          <?php
-          $sql = "SELECT * FROM `driver` WHERE driver_id = $driver_id";
-          $result = mysqli_query($conn, $sql);
-          $row = mysqli_fetch_assoc($result);
-          ?>
-
           <form action="" method="post">
+
             <div class="form-group">
-              <label for="exampleFormControlInput1">Driver Name</label>
-              <input type="text" class="form-control" name="driver_name" value="<?php echo $row['driver_name'] ?>"
-                placeholder=" Enter driver name">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Address</label>
-              <input type="text" class="form-control" name="address" value="<?php echo $row['address'] ?>"
-                placeholder="Enter driver address">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Contact Number</label>
-              <input type="text" class="form-control" name="contact" value="<?php echo $row['contact'] ?>"
-                placeholder="Enter driver contact number">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">National Identity Card (NID) Number</label>
-              <input type="text" class="form-control" name="nid" value="<?php echo $row['nid'] ?>"
-                placeholder="Enter driver NID">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">License Number</label>
-              <input type="text" class="form-control" name="licence" value="<?php echo $row['licence'] ?>"
-                placeholder="Enter Driver License Number">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Joining Date</label>
-              <input type="date" class="form-control" name="join_date" value="<?php echo $row['join_date'] ?>"
-                placeholder="Enter date">
+              <label for="exampleFormControlInput1">Driver ID</label>
+              <select name="route_id" class="form-control">
+                <option value="" selected disabled>Select</option>
+                <?php
+                $sql = "SELECT * FROM `driver`";
+                $result = mysqli_query($conn, $sql);
+
+                if ($result->num_rows > 0) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<option value="' . $row["driver_id"] . '">' . $row["driver_id"] . ' ~> ' . $row["driver_name"] . '</option>';
+                  }
+                } else {
+                  echo '<option value="" disabled>No options available</option>';
+                }
+                ?>
+              </select>
             </div>
 
             <div class="form-group">
-              <label for="exampleFormControlInput1">Salary</label>
-              <input type="text" class="form-control" name="salary" value="<?php echo $row['salary'] ?>"
-                placeholder="Enter Driver's Salary" required>
+              <label for="exampleFormControlInput1">Month</label>
+              <select name="destination" class="form-control">
+                <option value="" selected disabled>Select</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+              </select>
             </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Year</label>
+              <select name="destination" class="form-control">
+                <option value="" selected disabled>Select</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+              </select>
+            </div>
+
             <input class="btn btn-primary" type="submit" name="submit">
           </form>
         </div>

@@ -54,13 +54,13 @@ include "connection.php";
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./icons.html">
+            <a class="nav-link" href="./bus-schedule.php">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
               <p>Bus Schedule</p>
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./maps.html">
+            <a class="nav-link" href="./payment.php">
               <i class="fa fa-money" aria-hidden="true"></i>
               <p>Payment</p>
             </a>
@@ -105,6 +105,7 @@ include "connection.php";
                 <th scope="col">NID</th>
                 <th scope="col">Licence No.</th>
                 <th scope="col">Joining Date</th>
+                <th scope="col">Salary(৳)</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -135,6 +136,10 @@ include "connection.php";
                   </td>
                   <td>
                     <?php echo $row["join_date"] ?>
+                  </td>
+                  <td>
+                    ৳
+                    <?php echo $row["salary"] ?>
                   </td>
                   <td>
                     <a href="update-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i

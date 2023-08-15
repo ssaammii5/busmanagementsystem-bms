@@ -2,6 +2,7 @@
 
 <?php
 include "connection.php";
+$id = $_GET["id"];
 
 if (isset($_POST["submit"])) {
   $departure = $_POST['departure'];
@@ -10,9 +11,12 @@ if (isset($_POST["submit"])) {
   $driver_id = $_POST['driver_id'];
   $bus_id = $_POST['bus_id'];
 
-  $sql = "INSERT INTO `schedule`(`departure`, `arrival`, `route_id`, `driver_id`, `bus_id`) VALUES ('$departure','$arrival','$route_id', '$driver_id', '$bus_id')";
+
+
+  $sql = "UPDATE `schedule` SET `departure`='$departure',`arrival`='$arrival',`route_id`='$route_id',`driver_id`='$driver_id', `bus_id`='$bus_id' WHERE id = $id";
 
   $result = mysqli_query($conn, $sql);
+
 }
 
 ?>
@@ -76,7 +80,7 @@ if (isset($_POST["submit"])) {
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./payment.php">
+            <a class="nav-link" href="./maps.html">
               <i class="fa fa-money" aria-hidden="true"></i>
               <p>Payment</p>
             </a>
@@ -111,26 +115,32 @@ if (isset($_POST["submit"])) {
           <br>
 
 
+          <?php
+          $sql = "SELECT * FROM `schedule` WHERE id = $id";
+          $result = mysqli_query($conn, $sql);
+          $row_root = mysqli_fetch_assoc($result);
+          ?>
+
+
           <form action="" method="post">
-
-
 
             <div class="form-group mb-3">
               <label for="">Departure Time</label>
-              <input type="datetime-local" name="departure" class="form-control">
+              <input type="datetime-local" name="departure" class="form-control"
+                value="<?php echo $row_root['departure'] ?>">
             </div>
         </div>
         <div class="col">
           <div class="form-group mb-3">
             <label for="">Arrival Time</label>
-            <input type="datetime-local" name="arrival" class="form-control">
+            <input type="datetime-local" name="arrival" class="form-control" value="<?php echo $row_root['arrival'] ?>">
           </div>
 
 
           <div class="form-group">
             <label for="exampleFormControlInput1">Route ID</label>
             <select name="route_id" class="form-control">
-              <option value="" selected disabled>Select</option>
+              <option value="" disabled selected>Select</option>
               <?php
               $sql = "SELECT * FROM `route`";
               $result = mysqli_query($conn, $sql);
@@ -148,7 +158,7 @@ if (isset($_POST["submit"])) {
           <div class="form-group">
             <label for="exampleFormControlInput1">Driver ID</label>
             <select name="driver_id" class="form-control">
-              <option value="" selected disabled>Select</option>
+              <option value="" disabled selected>Select</option>
               <?php
               $sql = "SELECT * FROM `driver`";
               $result = mysqli_query($conn, $sql);
@@ -166,7 +176,7 @@ if (isset($_POST["submit"])) {
           <div class="form-group">
             <label for="exampleFormControlInput1">Bus ID</label>
             <select name="bus_id" class="form-control">
-              <option value="" selected disabled>Select</option>
+              <option value="" disabled selected>Select</option>
               <?php
               $sql = "SELECT * FROM `bus`";
               $result = mysqli_query($conn, $sql);

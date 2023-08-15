@@ -10,8 +10,9 @@ if (isset($_POST["submit"])) {
   $nid = $_POST['nid'];
   $licence = $_POST['licence'];
   $join_date = $_POST['join_date'];
+  $salary = $_POST['salary'];
 
-  $sql = "INSERT INTO `driver`(`driver_name`, `address`, `contact`, `nid`, `licence`,`join_date`) VALUES ('$driver_name','$address','$contact', '$nid', '$licence','$join_date')";
+  $sql = "INSERT INTO `driver`(`driver_name`, `address`, `contact`, `nid`, `licence`,`join_date`,`salary`) VALUES ('$driver_name','$address','$contact', '$nid', '$licence','$join_date','$salary')";
 
   $result = mysqli_query($conn, $sql);
 }
@@ -71,7 +72,7 @@ if (isset($_POST["submit"])) {
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./icons.html">
+            <a class="nav-link" href="./bus-schedule.php">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
               <p>Bus Schedule</p>
             </a>
@@ -136,6 +137,10 @@ if (isset($_POST["submit"])) {
             <div class="form-group">
               <label for="exampleFormControlInput1">Joining Date</label>
               <input type="date" class="form-control" name="join_date" placeholder="Enter date" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Salary</label>
+              <input type="text" class="form-control" name="salary" placeholder="Enter Driver's Salary" required>
             </div>
             <input class="btn btn-primary" type="submit" name="submit">
           </form>

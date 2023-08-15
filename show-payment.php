@@ -53,14 +53,14 @@ include "connection.php";
               <p>Route</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li>
             <a class="nav-link" href="./bus-schedule.php">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
               <p>Bus Schedule</p>
             </a>
           </li>
-          <li>
-            <a class="nav-link" href="./maps.html">
+          <li class="nav-item active">
+            <a class="nav-link" href="./payment.php">
               <i class="fa fa-money" aria-hidden="true"></i>
               <p>Payment</p>
             </a>
@@ -78,7 +78,7 @@ include "connection.php";
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class=" container-fluid  ">
-          <a class="navbar-brand" href="./show-schedule.php"> View All Schedule</a>
+          <a class="navbar-brand" href="#">Payment Details</a>
         </div>
       </nav>
       <!-- End Navbar -->
@@ -88,8 +88,8 @@ include "connection.php";
         <div class="container-fluid">
 
           <div class="d-flex justify-content-around">
-            <a href="./bus-schedule.php" class="btn btn-primary">Add New Schedule</a>
-            <a href="./show-schedule.php" class="btn btn-success">View Schedule</a>
+            <a href="./payment.php" class="btn btn-primary">New Payment</a>
+            <a href="./show-payment.php" class="btn btn-success">Payment Details</a>
           </div>
 
           <br>
@@ -98,18 +98,17 @@ include "connection.php";
           <table class="table table-hover text-center">
             <thead class="table-dark">
               <tr>
-                <th scope="col">Schedule ID</th>
-                <th scope="col">Departure Time</th>
-                <th scope="col">Arrival Time</th>
-                <th scope="col">Route</th>
-                <th scope="col">Driver</th>
-                <th scope="col">Bus</th>
+                <th scope="col">Payment ID</th>
+                <th scope="col">Driver ID</th>
+                <th scope="col">Paid(৳)</th>
+                <th scope="col">Month</th>
+                <th scope="col">Year</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
               <?php
-              $sql = "SELECT * FROM `schedule`";
+              $sql = "SELECT * FROM `payment`";
               $result = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_assoc($result)) {
                 ?>
@@ -118,25 +117,22 @@ include "connection.php";
                     <?php echo $row["id"] ?>
                   </td>
                   <td>
-                    <?php echo $row["departure"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["arrival"] ?>
-                  </td>
-                  <td>
-                    <?php echo $row["route_id"] ?>
-                  </td>
-                  <td>
                     <?php echo $row["driver_id"] ?>
                   </td>
                   <td>
-                    <?php echo $row["bus_id"] ?>
+                  ৳ <?php echo $row["salary"] ?>
                   </td>
                   <td>
-                    <a href="update-schedule.php?id=<?php echo $row["id"] ?>" class="link-dark"><i
+                    <?php echo $row["month"] ?>
+                  </td>
+                  <td>
+                    <?php echo $row["year"] ?>
+                  </td>
+                  <td>
+                    <a href="update-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
                         class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="delete-schedule.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-trash-o"
-                        aria-hidden="true"></i></a>
+                    <a href="delete-driver.php?driver_id=<?php echo $row["driver_id"] ?>" class="link-dark"><i
+                        class="fa fa-trash-o" aria-hidden="true"></i></a>
                   </td>
                 </tr>
                 <?php

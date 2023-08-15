@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
           </a>
         </div>
         <ul class="nav">
-          <li>
+          <li class="nav-item active">
             <a class="nav-link" href="./index.php">
               <i class="fa fa-tachometer" aria-hidden="true"></i>
               <p>Dashboard</p>
@@ -56,7 +56,7 @@ if (isset($_POST["submit"])) {
               <p>Bus</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li>
             <a class="nav-link" href="./driver.php">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               <p>Driver</p>
@@ -69,7 +69,7 @@ if (isset($_POST["submit"])) {
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./icons.html">
+            <a class="nav-link" href="./bus-schedule.php">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
               <p>Bus Schedule</p>
             </a>
@@ -93,7 +93,7 @@ if (isset($_POST["submit"])) {
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class=" container-fluid  ">
-          <a class="navbar-brand" href="">Add New Driver</a>
+          <a class="navbar-brand" href="">Dashboard</a>
         </div>
       </nav>
       <!-- End Navbar -->
@@ -101,42 +101,10 @@ if (isset($_POST["submit"])) {
 
         <!--main body-->
         <div class="container-fluid">
-
-          <div class="d-flex justify-content-around">
-            <a class="btn btn-primary" href="./driver.php" role="button">Add New Driver</a>
-            <a class="btn btn-success" href="./show-driver.php" role="button">View Driver</a>
-          </div>
-
           <br>
 
 
-          <form action="" method="post">
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Driver Name</label>
-              <input type="text" class="form-control" name="driver_name" placeholder="Enter driver name">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Address</label>
-              <input type="text" class="form-control" name="address" placeholder="Enter driver address">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Contact Number</label>
-              <input type="text" class="form-control" name="contact" placeholder="Enter driver contact number">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">National Identity Card (NID) Number</label>
-              <input type="text" class="form-control" name="nid" placeholder="Enter driver NID">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">License Number</label>
-              <input type="text" class="form-control" name="licence" placeholder="Enter Driver License Number">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Joining Date</label>
-              <input type="date" class="form-control" name="join_date" placeholder="Enter date">
-            </div>
-            <input class="btn btn-primary" type="submit" name="submit">
-          </form>
+
         </div>
       </div>
 

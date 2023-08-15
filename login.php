@@ -41,7 +41,7 @@
         while ($rows = mysqli_fetch_assoc($result)) {
           session_start();
           $_SESSION["email"] = $rows["email"];
-          header("Location: index.php?login-sucess");
+          header("Location: index.php?login-success");
         }
       } else {
         $login_Err = "<div class='alert alert-warning alert-dismissible fade show'>
