@@ -173,7 +173,7 @@ include "connection.php";
                 }
               } else {
                 // Display all payment records if no search query is provided
-                $sql = "SELECT * FROM `payment`";
+                $sql = "SELECT * FROM `payment` order by driver_id asc";
                 $result = mysqli_query($conn, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
                   ?>

@@ -1,18 +1,20 @@
 <?php
 include "connection.php";
 
-if (isset($_POST["submit"])) {
-  $driver_name = $_POST['driver_name'];
-  $address = $_POST['address'];
-  $contact = $_POST['contact'];
-  $nid = $_POST['nid'];
-  $licence = $_POST['licence'];
-  $join_date = $_POST['join_date'];
+$sql1 = "SELECT COUNT(*) AS total_rows1 FROM `bus`";
+$sql2 = "SELECT COUNT(*) AS total_rows2 FROM `driver`";
+$sql3 = "SELECT COUNT(*) AS total_rows3 FROM `route`";
+$sql4 = "SELECT COUNT(*) AS total_rows4 FROM `schedule`";
 
-  $sql = "INSERT INTO `driver`(`driver_name`, `address`, `contact`, `nid`, `licence`,`join_date`) VALUES ('$driver_name','$address','$contact', '$nid', '$licence','$join_date')";
+$result1 = mysqli_query($conn, $sql1);
+$result2 = mysqli_query($conn, $sql2);
+$result3 = mysqli_query($conn, $sql3);
+$result4 = mysqli_query($conn, $sql4);
 
-  $result = mysqli_query($conn, $sql);
-}
+$row1 = mysqli_fetch_assoc($result1);
+$row2 = mysqli_fetch_assoc($result2);
+$row3 = mysqli_fetch_assoc($result3);
+$row4 = mysqli_fetch_assoc($result4);
 
 ?>
 
@@ -75,7 +77,7 @@ if (isset($_POST["submit"])) {
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./maps.html">
+            <a class="nav-link" href="./payment.php">
               <i class="fa fa-money" aria-hidden="true"></i>
               <p>Payment</p>
             </a>
@@ -102,6 +104,61 @@ if (isset($_POST["submit"])) {
         <!--main body-->
         <div class="container-fluid">
           <br>
+
+          <div class="card text-center">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Bus Counts </h4>
+              <h2 class="card-text">
+                <?php echo $row1["total_rows1"] ?>
+              </h2>
+              <a href="./show-bus.php" class="btn btn-primary">Go There</a>
+            </div>
+            <div class="card-footer text-muted">
+            </div>
+          </div>
+          <div class="card text-center">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Driver Counts </h4>
+              <h2 class="card-text">
+                <?php echo $row2["total_rows2"] ?>
+              </h2>
+              <a href="./show-driver.php" class="btn btn-primary">Go There</a>
+            </div>
+            <div class="card-footer text-muted">
+            </div>
+          </div>
+          <div class="card text-center">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Route Counts </h4>
+              <h2 class="card-text">
+                <?php echo $row3["total_rows3"] ?>
+              </h2>
+              <a href="./show-route.php" class="btn btn-primary">Go There</a>
+            </div>
+            <div class="card-footer text-muted">
+            </div>
+          </div>
+          <div class="card text-center">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Bus Schedule Counts </h4>
+              <h2 class="card-text">
+                <?php echo $row4["total_rows4"] ?>
+              </h2>
+              <a href="./show-schedule.php" class="btn btn-primary">Go There</a>
+            </div>
+            <div class="card-footer text-muted">
+            </div>
+          </div>
+
+
 
 
 
