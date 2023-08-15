@@ -60,7 +60,7 @@ include "connection.php";
             </a>
           </li>
           <li>
-            <a class="nav-link" href="./maps.html">
+            <a class="nav-link" href="./payment.php">
               <i class="fa fa-money" aria-hidden="true"></i>
               <p>Payment</p>
             </a>

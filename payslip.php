@@ -52,7 +52,7 @@ $currentDate = date("Y-m-d"); // Format: Year-Month-Day (e.g., 2023-08-15)
 $pdf->Cell(130, 5, 'Dumki, Patuakhali', 0, 0);
 $pdf->Cell(59, 5, '', 0, 1); //end of line
 
-$pdf->Cell(130, 5, '[City, Country, ZIP]', 0, 0);
+$pdf->Cell(130, 5, '', 0, 0);
 $pdf->Cell(25, 5, 'Date', 0, 0);
 $pdf->Cell(34, 5, $currentDate, 0, 1); //end of line
 

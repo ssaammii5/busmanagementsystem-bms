@@ -121,7 +121,7 @@ if (isset($_POST["submit"])) {
         <div class="container-fluid">
 
           <div class="d-flex justify-content-around">
-            <a class="btn btn-primary" href="./route.php" role="button">Add New Route</a>
+            <a class="btn btn-primary" href="./payment.php" role="button">Add New Payment</a>
             <a class="btn btn-success" href="./show-payment.php" role="button">Payment Details</a>
           </div>
 
